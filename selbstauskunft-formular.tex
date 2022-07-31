@@ -1,0 +1,185 @@
+\documentclass[10pt, a4paper]{letter}
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage{nopageno}
+\usepackage{xcolor}
+\usepackage[official]{eurosym}
+
+% Tabellen
+\usepackage{tabularx}
+\setlength{\extrarowheight}{5pt}
+
+% Montserrat als Schriftart (i like it)
+\usepackage[defaultfam,tabular,lining]{montserrat}
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+
+% Seitenränder und Alignment
+\usepackage[left=1.5cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[document]{ragged2e}
+
+% Metadata
+\usepackage[pdftex,
+            pdfauthor={Christopher Katins},
+            pdftitle={Mieterselbstauskunft}]{hyperref}
+
+
+% Normale Hyperref Text Fields können nicht ohne Weiteres mit /hspace o. Ä. auf die maximale Linewidth gezogen werden, daher diese super hilfreiche Neudefinition, die genau das macht!
+% Quelle: https://tex.stackexchange.com/questions/77629/defining-a-width-that-fills-remaining-horizontal-space-for-text-fields-in-hyperr
+\newlength\TextFieldLength
+\newcommand\TextFieldFill[2][]{%
+  \setlength\TextFieldLength{\linewidth}%
+  \settowidth{\dimen0}{#2 }%
+  \addtolength\TextFieldLength{-\dimen0}%
+  \addtolength\TextFieldLength{-2.22221pt}%
+  \TextField[#1,width=\TextFieldLength]{\raisebox{2pt}{#2 }}%
+}
+% To copy: \TextFieldFill[name=]{}
+
+
+\begin{document}
+    \justifying
+
+    % Globales Design der TextFields
+    \def\DefaultHeightofText{12pt}
+    \def\DefaultOptionsofText{backgroundcolor=gray!30,borderwidth=0,bordercolor=white}
+    \def\DefaultOptionsofCheckBox{backgroundcolor=gray!30,borderwidth=0,bordercolor=white}
+
+    \textbf{\huge Mieterselbstauskunft}
+    \vspace{.4cm}
+
+    \textbf{\Large Zum Mietobjekt}
+
+    \TextFieldFill[name=str-nmr]{Straße, Nr. (Zimmer, Etage, ...): }
+
+    \TextFieldFill[name=plz-ort]{PLZ, Ort: }
+
+    \TextFieldFill[name=mietbeginn]{Mietbeginn: }
+
+    \TextFieldFill[name=nettokaltmiete]{Nettokaltmiete: }
+
+    \vspace{.8cm}
+    \textbf{\Large Zum/Zur Mietinteressent/in}
+
+    Im Rahmen der freiwilligen Selbstauskunft erteile ich dem Vermieter nachfolgende Informationen zum Zweck einer möglichen Anmietung des o. g. Mietobjektes:
+
+    \TextFieldFill[name=name]{Name, Vorname: }
+
+    \TextFieldFill[name=str-nmr-bisherig]{Straße, Nr. (bisherig): }
+
+    \TextFieldFill[name=plz-ort-bisherig]{PLZ, Ort (bisherig): }
+
+    \TextFieldFill[name=geburtsdatum]{Geburtsdatum: }
+
+    \TextFieldFill[name=telefon]{Telefon: }
+
+    \TextFieldFill[name=mail]{E-Mail-Adresse: }
+
+    \vspace{.4cm}
+
+    \TextFieldFill[name=beruf]{Beruf: }
+
+    \TextFieldFill[name=arbeitgeber]{Arbeitgeber: }
+
+    \TextFieldFill[name=nettoeinkommen]{Nettoeinkommen/Monat(\euro{}): }
+
+    \TextFieldFill[name=ungekündigt]{In ungekündiger Stellung? (Ja/Nein):  }
+
+    \vspace{.4cm}
+
+    \textbf{Zum Haushalt gehörende Kinder, Verwandte, Hausangestellte oder sonstige Mitbewohner:}
+
+    \begin{center}
+    \begin{tabularx}{.9\textwidth}{|X|X|X|l|}
+    \hline
+    Name & Vorname(n) & Geburtsdatum & Verwandschaftsgrad \\
+    \hline
+    \TextField[name=extra-a-name,width=3.6cm]{} &
+    \TextField[name=extra-a-vorname,width=3.6cm]{} &
+    \TextField[name=extra-a-geburtsdatum,width=3.6cm]{} &
+    \TextField[name=extra-a-verwandschaft,width=3.6cm]{} \\
+    \hline
+    \TextField[name=extra-b-name,width=3.6cm]{} &
+    \TextField[name=extra-b-vorname,width=3.6cm]{} &
+    \TextField[name=extra-b-geburtsdatum,width=3.6cm]{} &
+    \TextField[name=extra-b-verwandschaft,width=3.6cm]{} \\
+    \hline
+    \TextField[name=extra-c-name,width=3.6cm]{} &
+    \TextField[name=extra-c-vorname,width=3.6cm]{} &
+    \TextField[name=extra-c-geburtsdatum,width=3.6cm]{} &
+    \TextField[name=extra-c-verwandschaft,width=3.6cm]{} \\
+    \hline
+    \TextField[name=extra-d-name,width=3.6cm]{} &
+    \TextField[name=extra-d-vorname,width=3.6cm]{} &
+    \TextField[name=extra-d-geburtsdatum,width=3.6cm]{} &
+    \TextField[name=extra-d-verwandschaft,width=3.6cm]{} \\
+    \hline
+    \TextField[name=extra-e-name,width=3.6cm]{} &
+    \TextField[name=extra-e-vorname,width=3.6cm]{} &
+    \TextField[name=extra-e-geburtsdatum,width=3.6cm]{} &
+    \TextField[name=extra-e-verwandschaft,width=3.6cm]{} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+    \vspace{.4cm}
+
+    \textbf{Ich erkläre hiermit der Wahrheit entsprechend Folgendes:}
+
+    In die Wohnung werden \TextField[name=num-bewohner,width=1.5cm]{} Personen einziehen.
+
+    \CheckBox[name=vollständig]{}
+    \hangindent=.52cm Die Liste der weiteren Mitbewohner ist vollständig.
+
+    \CheckBox[name=wg]{}
+    \hangindent=.52cm Die Gründung einer Wohngemeinschaft ist NICHT beabsichtigt.
+
+    \CheckBox[name=gewerblich]{}
+    \hangindent=.52cm Es besteht KEINE Absicht, das Mietobjekt gewerblich zu nutzen.
+
+    \TextFieldFill[name=tiere]{Ich habe folgene Haustiere: }
+
+    \begin{flushright}
+    \textit{(Auf der folgenden Seite fortgeführt.)}
+    \end{flushright}
+
+    \pagebreak
+
+
+    \CheckBox[name=räumung]{}
+    \hangindent=.55cm Über die Räumung meiner bisherigen Wohnräume war/ist in den letzten 5 Jahren KEIN Räumungsrechtsstreit anhängig.
+
+    \CheckBox[name=mietforderung]{}
+    \hangindent=.55cm Gegen mich läuft KEIN Mietforderungsverfahren.
+
+    \CheckBox[name=pfändung]{}
+    \hangindent=.55cm Gegen mich läuft KEINE Lohn- bzw. Gehaltspfändung.
+
+    \CheckBox[name=versicherung]{}
+    \hangindent=.55cm Ich habe WEDER eine eidesstattliche Versicherung abgegeben, NOCH ist ein solches Verfahren anhängig.
+
+    \CheckBox[name=konkurs]{}
+    \hangindent=.55cm Über mein Vermögen wurde in den letzten 5 Jahren KEIN Konkurs- oder Vergleichsverfahren bzw. Insolvenzverfahren eröffnet und die Eröffnung eines solchen Verfahrens wurde auch NICHT mangels Masse abgewiesen. Solche Verfahren sind derzeit auch NICHT anhängig.
+    
+    \CheckBox[name=verpflichtungen]{}
+    \hangindent=.55cm Ich erkläre, alle mietvertraglich zu übernehmenden Verpflichtungen leisten zu können, insbesondere die Zahlung von Kaution, Miete und Betriebskosten.
+
+    \CheckBox[name=wahrheit]{}
+    \hangindent=.55cm Ich versichere mit meiner Unterschrift, alle Fragen vollständig und wahrheitsgemäß beantwortet zu haben. Falsche Angaben stellen einen Vertrauensbruch dar und berechtigen den Vermieter, den Mietvertrag anzufechten und gegebenenfalls sofort fristlos zu kündigen.
+
+    \vspace{.4cm}
+
+    \textbf{Anhang:}
+    \begin{itemize}
+        \item Mietschuldenfreiheitsbescheinigung
+        \item SCHUFA-Bonitätsauskunft
+        \item Kopie des Personalausweises
+        \item Einkommensnachweis/Arbeitsvertrag
+    \end{itemize}
+
+    \vspace{.4cm}
+
+    \TextField[name=unterschrift,width=9cm]{}\\
+    Ort, Datum und Unterschrift Mietinteressent/in
+
+\end{document}
